@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as action from 'actions'
+import requireAuth from 'components/requireAuth'
 
 class CommentBox extends React.Component {
 	state = { comment: '' }
@@ -15,7 +16,7 @@ class CommentBox extends React.Component {
 		this.props.saveComment(this.state.comment)
 	}
 
-	render() {
+	render = () => {
 		return (
 			<>
 				<form onSubmit={this.handleSubmit}>
@@ -36,4 +37,4 @@ class CommentBox extends React.Component {
 export default connect(
 	null,
 	action
-)(CommentBox)
+)(requireAuth(CommentBox))
